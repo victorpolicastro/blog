@@ -1,4 +1,4 @@
-gitsource 'https://rubygems.org'
+source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -14,7 +14,6 @@ gem 'kaminari'
 # Handle images
 gem "paperclip", "~> 6.0.0"
 gem 'aws-sdk', '~> 3'
-gem 'fog'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.7'
@@ -49,7 +48,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   # Rubocop for clean code
-  gem 'rubocop'
+  gem 'rubocop', require: false
   gem 'rubocop-performance'
 end
 
