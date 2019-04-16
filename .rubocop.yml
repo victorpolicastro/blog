@@ -1,0 +1,26 @@
+require: rubocop-performance
+
+Style/FrozenStringLiteralComment:
+ Enabled: false
+
+AllCops:
+ DisplayCopNames: true
+ Exclude:
+   - 'bin/*'
+   - 'db/**/*'
+   - 'config/**/*'
+   - 'script/**/*'
+   - !ruby/regexp /old_and_unused\.rb$/
+ TargetRubyVersion: 2.6.1
+
+Rails:
+ Enabled: true
+
+Metrics/MethodLength:
+ Max: 50
+
+Metrics/LineLength:
+ Max: 120
+
+Documentation:
+ Enabled: false
