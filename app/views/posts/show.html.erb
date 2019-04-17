@@ -4,11 +4,9 @@
   <%= @post.description %>
 </h2>
 
-<% @post_categories.each do |post_category| %>
-  <span class="badge badge-info">
-    <%= post_category.category.title %>
-  </span>
-<% end %>
+<span class="badge badge-info">
+  <%= @post.category.title %>
+</span>
 
 <p>
   <div class="post-image">

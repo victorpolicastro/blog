@@ -1,2 +1,2 @@
-json.extract! post, :id, :title, :description, :body, :created_at, :updated_at
+json.extract! post, :id, :title, :description, :body, :category_id, :created_at, :updated_at
 json.url post_url(post, format: :json)

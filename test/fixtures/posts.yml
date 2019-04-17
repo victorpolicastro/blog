@@ -4,8 +4,10 @@ one:
   title: MyString
   description: MyString
   body: MyString
+  category: one
 
 two:
   title: MyString
   description: MyString
   body: MyString
+  category: two

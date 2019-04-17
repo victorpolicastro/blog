@@ -9,12 +9,9 @@
     <% end %>
   </a>
   <div class="card-body">
-    <% @post_category = PostCategory.where(post: post) %>
-    <% @post_category.each do |post_category| %>
-      <span class="badge badge-info">
-        <%= post_category.category.title %>
-      </span>
-    <% end %>
+    <span class="badge badge-info">
+      <%= post.category.title %>
+    </span>
     <br />
     <a href="/posts/<%= post.id %>">
       <h2 class="card-title">

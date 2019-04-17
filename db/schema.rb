@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190417015438) do
+ActiveRecord::Schema.define(version: 20190416124427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,28 +29,20 @@ ActiveRecord::Schema.define(version: 20190417015438) do
     t.index ["post_id"], name: "index_comments_on_post_id", using: :btree
   end
 
-  create_table "post_categories", force: :cascade do |t|
-    t.integer  "post_id"
-    t.integer  "category_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.index ["category_id"], name: "index_post_categories_on_category_id", using: :btree
-    t.index ["post_id"], name: "index_post_categories_on_post_id", using: :btree
-  end
-
   create_table "posts", force: :cascade do |t|
     t.string   "title",              limit: 50
     t.string   "description",        limit: 500
     t.text     "body"
+    t.integer  "category_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "image_file_name"
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.index ["category_id"], name: "index_posts_on_category_id", using: :btree
   end
 
   add_foreign_key "comments", "posts"
-  add_foreign_key "post_categories", "categories"
-  add_foreign_key "post_categories", "posts"
+  add_foreign_key "posts", "categories"
 end
