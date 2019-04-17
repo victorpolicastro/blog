@@ -1,1 +1,43 @@
 @import "bootstrap";
+
+a {
+    text-decoration: none !important;
+    color: black;
+}
+
+h1 {
+    color: #009dff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 50px;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.navbar {
+  background-color: #009dff;
+}
+
+.post {
+    text-align: center;
+}
+
+.actions {
+  text-align: center;
+}
+
+.post-image {
+  text-align: center;
+}
+
+.aligned-center {
+  text-align: center;
+}
+
+.navbar-brand {
+  color: white;
+  font-weight: bold;
+}

@@ -17,9 +17,8 @@ ActiveRecord::Schema.define(version: 20190416124427) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "title"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -33,8 +32,7 @@ ActiveRecord::Schema.define(version: 20190416124427) do
   create_table "posts", force: :cascade do |t|
     t.string   "title",              limit: 50
     t.string   "description",        limit: 500
-    t.string   "body"
-    t.integer  "likes"
+    t.text     "body"
     t.integer  "category_id"
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false

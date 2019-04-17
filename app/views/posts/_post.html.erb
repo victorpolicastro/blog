@@ -1,0 +1,30 @@
+<div class="card mb-3">
+  <a href="/posts/<%= post.id %>">
+    <% if !post.image.blank? %>
+      <img src="<%= post.image.url(:large) %>" 
+          class="card-img-top"
+          alt="<%= post.title %>"
+          style="height: 500px"
+      >
+    <% end %>
+  </a>
+  <div class="card-body">
+    <span class="badge badge-info">
+      <%= post.category.title %>
+    </span>
+    <br />
+    <a href="/posts/<%= post.id %>">
+      <h2 class="card-title">
+        <%= post.title %>
+      </h2>
+    </a>  
+    <p class="card-text">
+      <%= post.description %>
+    </p>
+    <p class="card-text">
+      <small class="text-muted">
+        <%= post.created_at.strftime("%d/%m/%Y") %>
+      </small>
+    </p>
+  </div>
+</div>
