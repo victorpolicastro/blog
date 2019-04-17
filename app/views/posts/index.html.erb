@@ -1,9 +1,14 @@
-<% @posts.each do |post| %>
-  <%= render post %>
-<% end %>
+<br />
+<% if @posts.blank? %>
+  <h2>At the moment, we still don't have any posts, but come back latter :)</h2>
+<% else %>
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
 
-<div class="pagination">
-  <%= paginate @posts  %>
-</div>
+  <div class="pagination">
+    <%= paginate @posts  %>
+  </div>
+<% end %>
 
 <br>

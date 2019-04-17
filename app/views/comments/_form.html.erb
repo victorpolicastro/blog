@@ -1,27 +1,16 @@
-<%= form_for(comment) do |f| %>
-  <% if comment.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-      <ul>
-      <% comment.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <div class="row row-flex">
+    <div class="col-11">
+      <div class="form-group">
+        <%= f.text_area :body, rows: 3, placeholder: "Leave a comment", class: 'form-control' %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :post_id %>
-    <%= f.text_field :post_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
+    <div class="col-1">
+      <div class="actions align-bottom">
+        <%= button_tag(type: 'submit', class: "btn btn-success rounded-button align-bottom") do %>
+          <i class="fas fa-arrow-right"></i>
+        <% end %>
+      </div>
+    </div>
   </div>
 <% end %>

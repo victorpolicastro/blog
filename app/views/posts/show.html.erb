@@ -1,12 +1,13 @@
+<br/>
+<span class="badge badge-info float-right">
+  <%= @post.category.title %>
+</span>
+
 <h1><%= @post.title %></h1>
 
 <h2 class="aligned-center">
   <%= @post.description %>
 </h2>
-
-<span class="badge badge-info">
-  <%= @post.category.title %>
-</span>
 
 <p>
   <div class="post-image">
@@ -14,19 +15,31 @@
   </div>
 </p>
 
-<p>
+<br/>
+<hr />
+<br/>
+
+<div class="post-body">
   <%= simple_format(@post.body) %>
-</p>
+</div>
+
+<br/>
+
+<h2 class="aligned-center">
+  Comments
+</h2>
+
+<%= render @post.comments %>
+
+<br/><br/>
+
+<%= render 'comments/form' %>
 
 <br />
-
-<% @comments.each do |comment| %>
-  <div>
-    <%= comment.body %>
-  </div>
-<% end %>
 
 <div class="actions">
   <%= link_to '<i class="fas fa-pen"></i> Edit'.html_safe, edit_post_path(@post), class: 'btn btn-primary' %>
   <%= link_to '<i class="fas fa-arrow-left"></i> Back'.html_safe, posts_path, class: 'btn btn-primary' %>
 </div>
+
+<br/>

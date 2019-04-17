@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Liber Capital</title>
+    <title>Blog da Lebre</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -11,8 +11,15 @@
 
   <body>
     <%= render 'shared/navbar' %>
-
-    <p id="notice"><%= notice %></p>
+    
+    <% if !notice.blank? %>
+      <div class="alert alert-success" role="alert">
+        <%= notice %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
     <div class="container">
       <div class="row">
         <div class="col">

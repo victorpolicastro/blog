@@ -9,7 +9,7 @@ h1 {
     color: #009dff;
     font-weight: bold;
     text-align: center;
-    font-size: 50px;
+    font-size: 60px;
 }
 
 h2 {
@@ -37,7 +37,37 @@ h2 {
   text-align: center;
 }
 
-.navbar-brand {
+.navbar-brand, .nav-link {
   color: white;
   font-weight: bold;
+}
+
+.rounded-button {
+  border-radius: 50%;
+}
+
+.comment {
+  padding: 20px;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.img-thumbnail {
+  border: 0px !important;
+}
+
+.alert {
+  text-align: center;
+}
+
+.post-body {
+  font-size: 25px;
+  text-indent: 50px;
+}
+
+.row-flex {
+  display: flex;
+  align-items: center;
 }
