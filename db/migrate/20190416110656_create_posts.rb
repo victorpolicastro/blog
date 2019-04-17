@@ -4,8 +4,6 @@ class CreatePosts < ActiveRecord::Migration[5.0]
       t.string :title, limit: 50
       t.string :description, limit: 500
       t.text :body
-      t.integer :likes
-      t.references :category, foreign_key: true
 
       t.timestamps
     end

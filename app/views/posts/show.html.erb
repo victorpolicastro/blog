@@ -1,24 +1,34 @@
 <h1><%= @post.title %></h1>
 
-<%= image_tag @post.image.url(:large) %>
-
-<p>
+<h2 class="aligned-center">
   <%= @post.description %>
+</h2>
+
+<% @post_categories.each do |post_category| %>
+  <span class="badge badge-info">
+    <%= post_category.category.title %>
+  </span>
+<% end %>
+
+<p>
+  <div class="post-image">
+    <%= image_tag @post.image.url(:large), style: 'object-fit: fill' %>
+  </div>
 </p>
 
 <p>
-  <%= @post.body %>
+  <%= simple_format(@post.body) %>
 </p>
 
-<p>
-  <strong>Likes:</strong>
-  <%= @post.likes %>
-</p>
+<br />
 
-<p>
-  <strong>Category:</strong>
-  <%= @post.category.title %>
-</p>
+<% @comments.each do |comment| %>
+  <div>
+    <%= comment.body %>
+  </div>
+<% end %>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<div class="actions">
+  <%= link_to '<i class="fas fa-pen"></i> Edit'.html_safe, edit_post_path(@post), class: 'btn btn-primary' %>
+  <%= link_to '<i class="fas fa-arrow-left"></i> Back'.html_safe, posts_path, class: 'btn btn-primary' %>
+</div>

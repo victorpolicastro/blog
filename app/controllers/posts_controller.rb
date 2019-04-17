@@ -10,6 +10,8 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    @post_categories = PostCategory.where(post: @post)
+    @comments = Comment.where(post: @post)
   end
 
   # GET /posts/new
@@ -28,6 +30,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        params[:category_ids].each do |category_id|
+          PostCategory.new(post: @post, category_id: category_id).save
+        end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -70,6 +75,6 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:title, :description, :body, :likes, :category_id, :image)
+    params.require(:post).permit(:title, :description, :body, :image)
   end
 end

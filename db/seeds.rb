@@ -7,3 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 Category.create(title: "Programação").save!
+Category.create(title: "Ruby").save!
+Category.create(title: "Rails").save!
