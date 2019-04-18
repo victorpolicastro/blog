@@ -6,16 +6,39 @@
 
   <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li>
-        <a class="nav-link" href="<%= new_post_path %>">
-          <i class="fas fa-plus"></i>
-          New post
-        </a>
-      </li>
+      <% if user_signed_in? %>
+        <li>
+          <a class="nav-link" href="<%= new_post_path %>">
+            <i class="fas fa-plus"></i>
+            New post
+          </a>
+        </li>
+      <% end %>  
     </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search">
-      <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
+    <div class="my-2 my-lg-0">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <% if !user_signed_in? %>
+              Login
+            <% else %>
+              Welcome, <%= current_user.name %>
+            <% end %>
+          </a>
+          <% if !user_signed_in? %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to 'Sign in', new_user_session_path, class: 'dropdown-item' %>
+              <%= link_to 'Sign up', new_user_registration_path, class: 'dropdown-item' %>
+            </div>
+          <% else %>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to 'Edit', edit_user_registration_path, class: 'dropdown-item' %>
+              <a class="dropdown-item">My posts</a>
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            </div>
+          <% end %>
+        </li>
+      </ul>
+    </div>
   </div>
 </nav>

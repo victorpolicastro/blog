@@ -22,7 +22,7 @@ h2 {
 }
 
 .post {
-    text-align: center;
+  text-align: center;
 }
 
 .actions {
@@ -64,12 +64,12 @@ h2 {
 
 .post-body {
   font-size: 25px;
-  text-indent: 50px;
 }
 
 .row-flex {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .card {
@@ -80,4 +80,40 @@ h2 {
 .img-fluid {
   max-height: 250px !important;
   object-fit: cover;
+}
+
+.user-image-medium {
+  background-color: #bfbfbf;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid black;
+  font-size: 20px
+}
+
+.user-image-thumb {
+  background-color: #bfbfbf;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  color: white;
+  font-weight: bold;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid black;
+  font-size: 20px
+}
+
+.red {
+  color: red !important;
+  font-weight: bold;
+}
+
+.blue {
+  color: blue !important;
+  font-weight: bold;
 }
