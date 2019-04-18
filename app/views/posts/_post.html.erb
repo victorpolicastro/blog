@@ -1,10 +1,9 @@
-<div class="card mb-3" style="max-width: 50%;">
+<div class="card mb-4" style="max-width: 70%;">
   <a href="/posts/<%= post.id %>">
     <% if !post.image.blank? %>
       <img src="<%= post.image.url(:large) %>" 
           class="card-img-top img-fluid"
           alt="<%= post.title %>"
-          style="max-height: 300px"
       >
     <% end %>
   </a>

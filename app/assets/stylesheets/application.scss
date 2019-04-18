@@ -71,3 +71,13 @@ h2 {
   display: flex;
   align-items: center;
 }
+
+.card {
+  margin: 0 auto;
+  float: none;
+}
+
+.img-fluid {
+  max-height: 250px !important;
+  object-fit: cover;
+}

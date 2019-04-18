@@ -9,11 +9,13 @@
   <%= @post.description %>
 </h2>
 
-<p>
-  <div class="post-image">
-    <%= image_tag @post.image.url(:large), style: 'object-fit: fill' %>
-  </div>
-</p>
+<% if !@post.image.blank? %>
+  <p>
+    <div class="post-image">
+      <%= image_tag @post.image.url(:large), style: 'object-fit: fill' %>
+    </div>
+  </p>
+<% end %>
 
 <br/>
 <hr />
@@ -23,11 +25,13 @@
   <%= simple_format(@post.body) %>
 </div>
 
-<br/>
+<br/><br/>
 
 <h2 class="aligned-center">
   Comments
 </h2>
+
+<br/>
 
 <%= render @post.comments %>
 
