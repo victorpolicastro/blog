@@ -1,28 +1,27 @@
 <%= form_for(post) do |f| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
-
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  
+  <%= render 'shared/error_messages' %>
 
   <% @categories = Category.all.order(:title) %>
 
+  <% if !@post.image.blank? %>
+    <div class="post-image">
+      <%= image_tag @post.image.url(:large), style: 'object-fit: fill' %>
+    </div>
+  <% end %>
+
+  <br/>
+
   <div class="form-group">
-    <%= f.text_field :title, class: 'form-control', placeholder: :title %>
+    <%= f.text_field :title, class: 'form-control', placeholder: :title, required: true %>
   </div>
 
   <div class="form-group">
-    <%= f.select :category_id, @categories.map { |category| [category.title, category.id]}, {}, { class: 'form-control' } %>
+    <%= f.select :category_id, @categories.map { |category| [category.title, category.id]}, {include_blank: 'Select the category'}, { class: 'form-control' } %>
   </div>
 
   <div class="form-group">
-    <%= f.text_field :description, class: 'form-control', placeholder: :description %>
+    <%= f.text_field :description, class: 'form-control', placeholder: :description, required: true %>
   </div>
 
   <div class="form-group">
