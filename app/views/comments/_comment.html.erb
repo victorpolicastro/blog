@@ -1,17 +1,31 @@
-<hr />
-<div class="row row-comment align-middle">
-  <div class="col-1 no-padding">
-    <img src="https://i.dailymail.co.uk/i/pix/2013/06/13/article-0-1A4BB14C000005DC-554_634x429.jpg" 
-          alt="pug-of-the-rings" 
-          class="img-thumbnail">
-  </div>
-  <div class="col-11 no-padding">
-    <div class="comment">
-      <%= comment.body %>
-      <br/><br/>
-      <small class="text-muted float-right">
-        <%= comment.created_at.strftime("On %d/%m/%Y at %I:%M%p") %>
-      </small>
+<% if !comment.id.nil? %>
+  <hr />
+  <div class="row row-comment align-middle">
+    <div class="col-1 no-padding">
+      <%= image_tag comment.user.avatar.url(:large), 
+            class: 'img-thumbnail',
+            alt: comment.user.name %>
+    </div>
+    <div class="col-11 no-padding">
+      <div class="comment">
+        <%= comment.body %>
+        <br/>
+        <div class="row">
+          <div class="col">
+            <% if current_user == comment.user %>
+              <small>
+                <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_post_comment_path(comment.post, comment), class: 'blue', title: 'Edit comment', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' %>
+                <%= link_to '<i class="fas fa-times"></i>'.html_safe, [comment.post, comment], method: :delete, class: 'red', title: 'Delete comment', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' %>
+              </small>  
+            <% end %>
+          </div>
+          <div class="col">
+            <small class="text-muted float-right">
+              <%= comment.created_at.strftime("#{comment.user.name} #{comment.user.last_name}  on %d/%m/%Y at %I:%M%p") %>
+            </small>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+<% end %>
