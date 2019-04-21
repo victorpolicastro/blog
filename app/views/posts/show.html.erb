@@ -1,7 +1,23 @@
 <br/>
-<span class="badge badge-info float-right">
-  <%= @post.category.title %>
-</span>
+
+<div class="row">
+  <div class="col">
+    <% if @post.user.avatar.blank? %>
+      <b class="red"><%= "#{@post.user.name[0]}#{@post.user.last_name[0]}" %></b>
+    <% else %>
+      <%= image_tag @post.user.avatar.url(:large), class: 'user-image-thumb' %>
+    <% end %>
+    <b><%= @post.user.name %> <%= @post.user.last_name %></b>
+    on <%= @post.created_at.strftime("%d/%m/%Y") %>
+  </div>
+  <div class="col">
+    <span class="badge badge-info float-right">
+      <%= @post.category.title %>
+    </span>
+  </div>
+</div>
+
+<br/>
 
 <h1><%= @post.title %></h1>
 
@@ -13,19 +29,25 @@
   <p>
     <div class="post-image">
       <%= image_tag @post.image.url(:large), style: 'object-fit: fill' %>
+      <% if current_user == @post.user %>
+        <br /><br />
+        <div>
+          <%= link_to '<i class="fas fa-pen"></i> Edit'.html_safe, edit_post_path(@post), class: 'btn btn-primary' %>
+          <%= link_to '<i class="fas fa-times"></i> Destroy'.html_safe, @post, method: :delete, class: 'btn btn-danger' %>
+        </div>
+      <% end %>
     </div>
   </p>
 <% end %>
 
 <br/>
 <hr />
-<br/>
 
 <div class="post-body">
-  <%= simple_format(@post.body) %>
+  <%= simple_format(@post.body, class: 'post-body') %>
 </div>
 
-<br/><br/>
+<br/>
 
 <h2 class="aligned-center">
   Comments
@@ -35,14 +57,15 @@
 
 <%= render @post.comments %>
 
-<br/><br/>
+<br/>
 
-<%= render 'comments/form' %>
+<% if user_signed_in? %>
+  <%= render 'comments/form' %>
+<% end %>  
 
 <br />
 
 <div class="actions">
-  <%= link_to '<i class="fas fa-pen"></i> Edit'.html_safe, edit_post_path(@post), class: 'btn btn-primary' %>
   <%= link_to '<i class="fas fa-arrow-left"></i> Back'.html_safe, posts_path, class: 'btn btn-primary' %>
 </div>
 
