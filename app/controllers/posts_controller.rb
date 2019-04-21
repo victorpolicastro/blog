@@ -11,6 +11,9 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
+    if request.path != post_path(@post)
+      redirect_to @post, status: :moved_permanently
+    end
     @comment = @post.comments.build
   end
 
@@ -67,11 +70,11 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:title, :description, :body, :category_id, :image, :user_id)
+    params.require(:post).permit(:title, :description, :body, :category_id, :image, :user_id, :slug)
   end
 end
