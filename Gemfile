@@ -7,17 +7,15 @@ end
 
 # Authentication
 gem 'devise'
-
 # Pagination
 gem 'kaminari'
-
 # Handle images
 gem 'aws-sdk', '~> 3'
 gem 'paperclip', '~> 6.0.0'
-
 # Bootstrap
 gem 'bootstrap', '~> 4.3.1'
-
+# Slug
+gem 'friendly_id', '~> 5.2.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.7'
 # Use postgresql as the database for Active Record

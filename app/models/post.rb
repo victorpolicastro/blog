@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
   belongs_to :category, optional: true
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -8,4 +10,8 @@ class Post < ApplicationRecord
   validates :description, presence: true, length: { maximum: 500 }
 
   paginates_per 10
+
+  def should_generate_new_friendly_id?
+    slug.blank? || title_changed?
+  end
 end
