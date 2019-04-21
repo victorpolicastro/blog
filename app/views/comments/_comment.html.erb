@@ -2,9 +2,13 @@
   <hr />
   <div class="row row-comment align-middle">
     <div class="col-1 no-padding">
-      <%= image_tag comment.user.avatar.url(:large), 
-            class: 'img-thumbnail',
-            alt: comment.user.name %>
+      <% if comment.user.avatar.blank? %>
+        <b class="red"><%= "#{comment.user.name[0]}#{comment.user.last_name[0]}" %></b>
+      <% else %>
+        <%= image_tag comment.user.avatar.url(:large), 
+              class: 'img-thumbnail',
+              alt: comment.user.name %>
+      <% end %>
     </div>
     <div class="col-11 no-padding">
       <div class="comment">

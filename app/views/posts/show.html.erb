@@ -2,7 +2,11 @@
 
 <div class="row">
   <div class="col">
-    <%= image_tag @post.user.avatar.url(:large), class: 'user-image-thumb' %>
+    <% if @post.user.avatar.blank? %>
+      <b class="red"><%= "#{@post.user.name[0]}#{@post.user.last_name[0]}" %></b>
+    <% else %>
+      <%= image_tag @post.user.avatar.url(:large), class: 'user-image-thumb' %>
+    <% end %>
     <b><%= @post.user.name %> <%= @post.user.last_name %></b>
     on <%= @post.created_at.strftime("%d/%m/%Y") %>
   </div>

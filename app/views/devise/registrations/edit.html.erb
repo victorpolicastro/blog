@@ -4,11 +4,7 @@
   <%= render "devise/shared/error_messages", resource: resource %>
   
   <div class="row-flex">
-    <% if current_user.avatar.blank? %>
-      <div class="user-image row-flex">
-        No image
-      </div>
-    <% else %>
+    <% if !current_user.avatar.blank? %>
       <div class="user-image row-flex">
         <%= image_tag current_user.avatar.url(:large), class: 'user-image-medium' %>
       </div>
