@@ -27,20 +27,20 @@
   <%= @post.description %>
 </h2>
 
-<% if !@post.image.blank? %>
-  <p>
-    <div class="post-image">
+<p>
+  <div class="post-image">
+    <% if !@post.image.blank? %>
       <%= image_tag @post.image.url(:large), style: 'object-fit: fill' %>
-      <% if current_user == @post.user %>
-        <br /><br />
-        <div>
-          <%= link_to '<i class="fas fa-pen"></i> Edit'.html_safe, edit_post_path(@post), class: 'btn btn-primary' %>
-          <%= link_to '<i class="fas fa-times"></i> Destroy'.html_safe, @post, method: :delete, class: 'btn btn-danger' %>
-        </div>
-      <% end %>
-    </div>
-  </p>
-<% end %>
+    <% end %>  
+    <% if current_user == @post.user %>
+      <br /><br />
+      <div>
+        <%= link_to '<i class="fas fa-pen"></i> Edit'.html_safe, edit_post_path(@post), class: 'btn btn-primary' %>
+        <%= link_to '<i class="fas fa-times"></i> Destroy'.html_safe, @post, method: :delete, class: 'btn btn-danger' %>
+      </div>
+    <% end %>
+  </div>
+</p>
 
 <br/>
 <hr />
