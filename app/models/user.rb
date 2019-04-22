@@ -31,4 +31,8 @@ class User < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: %r{ /\Aimage\/.*\z/ }
   has_many :comments, dependent: :destroy
   has_many :posts, dependent: :destroy
+  validates :name, presence: true
+  validates :last_name, presence: true
+  validates :email, presence: true
+  validates :password, presence: true
 end

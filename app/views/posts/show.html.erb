@@ -10,11 +10,13 @@
     <b><%= @post.user.name %> <%= @post.user.last_name %></b>
     on <%= @post.created_at.strftime("%d/%m/%Y") %>
   </div>
-  <div class="col">
-    <span class="badge badge-info float-right">
-      <%= @post.category.title %>
-    </span>
-  </div>
+  <% if @post.category.present? %>
+    <div class="col">
+      <span class="badge badge-info float-right">
+        <%= @post.category.title %>
+      </span>
+    </div>
+  <% end %>  
 </div>
 
 <br/>
