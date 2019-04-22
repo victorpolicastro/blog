@@ -8,10 +8,12 @@
     <% end %>
   </a>
   <div class="card-body">
-    <span class="badge badge-info float-right">
-      <%= post.category.title %>
-    </span>
-    <br />
+    <% if post.category.present? %>
+      <span class="badge badge-info float-right">
+        <%= post.category.title %>
+      </span>
+      <br />
+    <% end %>  
     <a href="/posts/<%= post.id %>">
       <h2 class="card-title">
         <%= post.title %>
