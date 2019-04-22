@@ -9,5 +9,4 @@
 Category.create(title: "Programação").save!
 Category.create(title: "Ruby").save!
 Category.create(title: "Rails").save!
-
 User.create(name: 'admin', last_name: 'admin', email: 'admin@blog.com', password: 'admin1', admin: true).save!
