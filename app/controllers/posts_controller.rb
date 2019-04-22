@@ -1,22 +1,18 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_post, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
 
   # GET /posts
   # GET /posts.json
   def index
     @posts = Post.all.order('created_at desc').page(params[:page])
-    if !params[:category].blank?
-      @posts = @posts.where(category_id: params[:category]).page(params[:page])
-    end
+    @posts = @posts.where(category_id: params[:category]).page(params[:page]) if params[:category].present?
   end
 
   # GET /posts/1
   # GET /posts/1.json
   def show
-    if request.path != post_path(@post)
-      redirect_to @post, status: :moved_permanently
-    end
+    redirect_to @post, status: :moved_permanently if request.path != post_path(@post)
     @comment = @post.comments.build
   end
 
@@ -26,8 +22,7 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts
   # POST /posts.json

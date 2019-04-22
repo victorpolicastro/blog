@@ -8,8 +8,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/1
   # GET /comments/1.json
-  def show
-  end
+  def show; end
 
   # GET /comments/new
   def new
@@ -19,13 +18,13 @@ class CommentsController < ApplicationController
   # GET /comments/1/edit
   def edit
     @comment = Comment.find(params[:id])
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
   end
 
   # POST /comments
   # POST /comments.json
   def create
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
     @comment = @post.comments.create(comment_params.merge(user_id: current_user.id))
 
     respond_to do |format|
@@ -42,7 +41,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
     @comment = @post.comments.find(params[:id])
     respond_to do |format|
       if @comment.update(comment_params)
@@ -58,7 +57,7 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   # DELETE /comments/1.json
   def destroy
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by(slug: params[:post_id])
     @comment = @post.comments.find(params[:id])
     @comment.destroy
     respond_to do |format|
@@ -68,6 +67,7 @@ class CommentsController < ApplicationController
   end
 
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_comment
     @comment = Comment.find(params[:id])
