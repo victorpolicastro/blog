@@ -4,7 +4,10 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    if !current_user.admin?
+      redirect_to index
+    end
+    @categories = Category.all.page(params[:page])
   end
 
   # GET /categories/1

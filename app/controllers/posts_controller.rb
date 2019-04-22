@@ -6,6 +6,9 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all.order('created_at desc').page(params[:page])
+    if !params[:category].blank?
+      @posts = @posts.where(category_id: params[:category]).page(params[:page])
+    end
   end
 
   # GET /posts/1
