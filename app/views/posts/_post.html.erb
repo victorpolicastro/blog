@@ -1,31 +1,34 @@
+<% @post = Posts::PostPresenter.new(post) %>
+<% @user = Users::UserPresenter.new(@post.user) %>
+
 <div class="card mb-4" style="max-width: 70%;">
-  <a href="/posts/<%= post.id %>">
-    <% if !post.image.blank? %>
-      <img src="<%= post.image.url(:large) %>" 
+  <a href="/posts/<%= @post.id %>">
+    <% if !@post.image.blank? %>
+      <img src="<%= @post.image.url(:large) %>" 
           class="card-img-top img-fluid"
-          alt="<%= post.title %>"
+          alt="<%= @post.title %>"
       >
     <% end %>
   </a>
   <div class="card-body">
-    <% if post.category.present? %>
+    <% if @post.category.present? %>
       <span class="badge badge-info float-right">
-        <%= post.category.title %>
+        <%= @post.category.title %>
       </span>
       <br />
     <% end %>  
-    <a href="/posts/<%= post.id %>">
+    <a href="/posts/<%= @post.id %>">
       <h2 class="card-title">
-        <%= post.title %>
+        <%= @post.title %>
       </h2>
     </a>  
     <p class="card-text">
-      <%= post.description %>
+      <%= @post.description %>
     </p>
     <p class="card-text">
       <small class="text-muted">
-        <%= post.user.name %> <%= post.user.last_name %>
-        on <%= post.created_at.strftime("%d/%m/%Y") %>
+        <%= @user.full_name %>
+        on <%= @post.creation_date %>
       </small>
     </p>
   </div>
