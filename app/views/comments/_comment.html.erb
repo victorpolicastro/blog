@@ -3,7 +3,7 @@
   <div class="row row-comment align-middle">
     <div class="col-1 no-padding">
       <% if comment.user.avatar.blank? %>
-        <b class="red"><%= "#{comment.user.name[0]}#{comment.user.last_name[0]}" %></b>
+        <b class="red blank-image-comment"><%= "#{comment.user.name[0]}#{comment.user.last_name[0]}" %></b>
       <% else %>
         <%= image_tag comment.user.avatar.url(:large), 
               class: 'img-thumbnail',
@@ -16,12 +16,14 @@
         <br/>
         <div class="row">
           <div class="col">
-            <% if current_user == comment.user %>
-              <small>
-                <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_post_comment_path(comment.post, comment), class: 'blue', title: 'Edit comment', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' %>
-                <%= link_to '<i class="fas fa-times"></i>'.html_safe, [comment.post, comment], method: :delete, class: 'red', title: 'Delete comment', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' %>
-              </small>  
-            <% end %>
+            <% if user_signed_in? %>
+              <% if current_user == comment.user || current_user.admin? %>
+                <small>
+                  <%= link_to '<i class="fas fa-pen"></i>'.html_safe, edit_post_comment_path(comment.post, comment), class: 'blue', title: 'Edit comment', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' %>
+                  <%= link_to '<i class="fas fa-times"></i>'.html_safe, [comment.post, comment], method: :delete, class: 'red', title: 'Delete comment', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' %>
+                </small>  
+              <% end %>
+            <% end %>  
           </div>
           <div class="col">
             <small class="text-muted float-right">
