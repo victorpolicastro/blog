@@ -1,36 +1,36 @@
 <% if !comment.id.nil? %>
-  <% @comment = Comments::CommentPresenter.new(comment) %>
-  <% @user = Users::UserPresenter.new(comment.user) %>
+  <% comment = Comments::CommentPresenter.new(comment) %>
+  <% user = Users::UserPresenter.new(comment.user) %>
 
   <hr />
   <div class="row row-comment align-middle">
     <div class="col-1 no-padding">
-      <% if @user.avatar.blank? %>
-        <b class="red blank-image-comment"><%= "#{@user.initials}" %></b>
+      <% if user.avatar.blank? %>
+        <b class="red blank-image-comment"><%= "#{user.initials}" %></b>
       <% else %>
-        <%= image_tag @user.avatar.url(:large), 
+        <%= image_tag user.avatar.url(:large), 
               class: 'img-thumbnail',
-              alt: @user.name %>
+              alt: user.name %>
       <% end %>
     </div>
     <div class="col-11 no-padding">
       <div class="comment">
-        <%= @comment.body %>
+        <%= comment.body %>
         <br/>
         <div class="row">
           <div class="col">
             <% if user_signed_in? %>
-              <% if current_user == @comment.user || current_user.admin? %>
+              <% if current_user == comment.user || current_user.admin? %>
                 <small>
                   <%= link_to '<i class="fas fa-pen"></i>'.html_safe,
-                    edit_post_comment_path(@comment.post, @comment),
+                    edit_post_comment_path(comment.post, comment),
                     class: 'blue',
                     title: 'Edit comment',
                     'data-toggle' => 'tooltip',
                     'data-placement' => 'bottom' 
                   %>
                   <%= link_to '<i class="fas fa-times"></i>'.html_safe,
-                    [@comment.post, @comment],
+                    [comment.post, comment],
                     method: :delete,
                     class: 'red',
                     title: 'Delete comment',
@@ -43,7 +43,7 @@
           </div>
           <div class="col">
             <small class="text-muted float-right">
-              <%= @user.full_name %> on <%= @comment.created_date_time %>
+              <%= user.full_name %> on <%= comment.created_date_time %>
             </small>
           </div>
         </div>
