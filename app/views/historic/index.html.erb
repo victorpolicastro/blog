@@ -1,0 +1,42 @@
+<br />
+
+
+<h1>My posts</h1>
+
+<% if @posts.blank? %>
+  <br/>
+  <div class="aligned-center">
+    No posts were written by you.
+    <br/>
+    <b><%= link_to 'Writte a new post', new_post_path %></b>
+  </div>
+<% else %>
+  <% @posts.each do |post| %>
+    <% @post = Posts::PostPresenter.new(post) %>
+    <b><%= link_to @post.title, @post %></b>
+    written on
+    <%= @post.creation_date %>
+    <br />
+    <hr />
+  <% end %>
+<% end %>
+
+<br/>
+<h1>My comments</h1>
+
+<% if @posts.blank? %>
+  <br/>
+  <div class="aligned-center">
+    No comments were written by you.
+  </div>
+<% else %>
+  <% @comments.each do |comment| %>
+    <% @comment = Comments::CommentPresenter.new(comment) %>
+    <div>
+      <b>Post:</b> <%= link_to @comment.post.title, @comment.post %><br />
+      <b>On:</b> <%= @comment.created_date_time %><br/>
+      <b>Comment:</b> <%= link_to @comment.body, edit_post_comment_path(@comment.post, @comment) %><br />
+    </div>
+    <hr />
+  <% end %>
+<% end %>  

@@ -46,14 +46,16 @@
           </a>
           <% if !user_signed_in? %>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-              <%= link_to '<i class="fas fa-door-closed"></i> Sign in'.html_safe, new_user_session_path, class: 'dropdown-item' %>
+              <%= link_to '<i class="fas fa-sign-in-alt"></i> Sign in'.html_safe, new_user_session_path, class: 'dropdown-item' %>
+              <div class="dropdown-divider"></div>
               <%= link_to '<i class="fas fa-user-plus"></i> Sign up'.html_safe, new_user_registration_path, class: 'dropdown-item' %>
             </div>
           <% else %>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to '<i class="fas fa-pen"></i> Edit account'.html_safe, edit_user_registration_path, class: 'dropdown-item' %>
+              <%= link_to '<i class="fas fa-history"></i> My historic'.html_safe, historic_index_path, class: 'dropdown-item' %>
               <div class="dropdown-divider"></div>
-              <%= link_to '<i class="fas fa-door-open"></i> Sign out'.html_safe, destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+              <%= link_to '<i class="fas fa-power-off"></i> Sign out'.html_safe, destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
             </div>
           <% end %>
         </li>
