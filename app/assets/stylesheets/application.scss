@@ -83,11 +83,9 @@ h2 {
 }
 
 .user-image-medium {
-  background-color: #bfbfbf;
   width: 200px;
   height: 200px;
   border-radius: 50%;
-  color: white;
   font-weight: bold;
   vertical-align: middle;
   text-align: center;
@@ -96,11 +94,9 @@ h2 {
 }
 
 .user-image-thumb {
-  background-color: #bfbfbf;
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  color: white;
   font-weight: bold;
   vertical-align: middle;
   text-align: center;
@@ -116,4 +112,8 @@ h2 {
 .blue {
   color: blue !important;
   font-weight: bold;
+}
+
+.blank-image-comment {
+  font-size: 30px;
 }
